@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gris"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="100dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                app:layout_anchorGravity="bottom"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:background="@color/red"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:layout_gravity="left"
+                    android:padding="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:clickable="true"
+                    android:src="@drawable/music" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="25dp"
+                    android:fontFamily="sans-serif-thin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="26dp"
+                    android:layout_gravity="center"
+                    android:text="Preview"
+                    android:textColor="@color/negro" />
+
+                <ProgressBar
+                    android:layout_margin="10dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progress"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:max="100"
+                    android:progress="45"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:weightSum="3"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:src="@drawable/stop"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-thin"
+                    android:textColor="@color/negro"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/gris"
+                    android:id="@+id/btnStop"
+                    android:text="Cancelar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+                <ImageButton
+                    android:src="@drawable/pause"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-thin"
+                    android:textColor="@color/negro"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/gris"
+                    android:id="@+id/btnPause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <ImageButton
+                    android:src="@drawable/play"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-thin"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/gris"
+                    android:id="@+id/btnPlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
