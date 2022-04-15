@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/gris"
+    android:background="@color/grey"
     android:orientation="vertical"
     app:behavior_hideable="false"
     app:behavior_peekHeight="100dp"
@@ -30,13 +31,15 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="start"
                     android:layout_margin="5dp"
-                    android:layout_gravity="left"
-                    android:padding="5dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:clickable="true"
-                    android:src="@drawable/music" />
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:src="@drawable/music"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -44,66 +47,63 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:padding="25dp"
+                    android:padding="10dp"
+                    android:id="@+id/bsd_colletion_name"
                     android:fontFamily="sans-serif-thin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="26dp"
+                    android:gravity="start"
+                    android:textSize="26sp"
                     android:layout_gravity="center"
-                    android:text="Preview"
-                    android:textColor="@color/negro" />
+                    tools:text="El ansioso"
+                    android:textColor="@color/black" />
 
-                <ProgressBar
-                    android:layout_margin="10dp"
-                    style="?android:attr/progressBarStyleHorizontal"
+                <TextView
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:id="@+id/bsd_artist_name"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/progress"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:max="100"
-                    android:progress="45"/>
+                    android:gravity="start"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    tools:text="Grupo Marrano"
+                    android:layout_marginStart="10sp"
+                    android:textColor="@color/gris_oscuro" />
+
             </LinearLayout>
             <LinearLayout
                 android:layout_marginBottom="10dp"
-                android:weightSum="3"
+                android:weightSum="2"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:src="@drawable/stop"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif-thin"
-                    android:textColor="@color/negro"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/gris"
-                    android:id="@+id/btnStop"
-                    android:text="Cancelar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
 
                 <ImageButton
-                    android:src="@drawable/pause"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif-thin"
-                    android:textColor="@color/negro"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/gris"
                     android:id="@+id/btnPause"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@color/grey"
+                    android:fontFamily="sans-serif-thin"
+                    android:src="@drawable/pause"
+                    android:textColor="@color/black"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
                 <ImageButton
+                    android:visibility="gone"
                     android:src="@drawable/play"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-thin"
                     android:layout_marginTop="10dp"
-                    android:background="@color/gris"
+                    android:background="@color/grey"
                     android:id="@+id/btnPlay"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

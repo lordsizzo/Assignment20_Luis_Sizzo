@@ -17,11 +17,12 @@
 
         <ImageView
             android:id="@+id/im_song"
-            android:layout_weight="2"
-            android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@drawable/ic_launcher_foreground"/>
+            android:layout_weight="2"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription,ImageContrastCheck"
+            tools:src="@drawable/ic_launcher_foreground" />
         <LinearLayout
             android:padding="10dp"
             android:orientation="vertical"
@@ -31,17 +32,19 @@
 
             <TextView
                 android:layout_marginBottom="10dp"
-                android:textSize="20dp"
-                android:id="@+id/tv_collection_name"
+                android:textSize="20sp"
+                android:id="@+id/tv_colletion_song_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="El Ansioso"/>
+
             <TextView
-                android:textColor="@color/gray"
-                android:id="@+id/tv_song_name"
+                android:id="@+id/tv_artist_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Grupo Marrano"/>
+                android:textColor="@color/gray"
+                tools:ignore="TextContrastCheck"
+                tools:text="Grupo Marrano" />
 
 
         </LinearLayout>

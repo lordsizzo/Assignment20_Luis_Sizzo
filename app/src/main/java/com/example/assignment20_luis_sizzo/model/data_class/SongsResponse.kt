@@ -1,4 +1,4 @@
-package com.example.assignment20_luis_sizzo.model
+package com.example.assignment20_luis_sizzo.model.data_class
 
 
 data class ResultSongResponse(

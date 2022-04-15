@@ -1,19 +1,28 @@
 package com.example.assignment20_luis_sizzo.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import com.example.assignment20_luis_sizzo.databinding.BottomSheetPlayerBinding
+import com.example.assignment20_luis_sizzo.databinding.SimpleDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.io.IOException
-import java.lang.Exception
 
 class Dialogs {
-    fun bottomSheetDialogChangeSignature(context: Context, url: String){
+    private lateinit var mPlayer: MediaPlayer
+    @SuppressLint("LongLogTag")
+    fun bottomSheetDialogChangeSignature(
+        context: Context,
+        url: String,
+        tvColletionSongName: String,
+        tvArtistName: String
+    ) {
         try {
-            val mPlayer = MediaPlayer()
+            mPlayer = MediaPlayer()
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
             try {
                 mPlayer.setDataSource(url)
@@ -32,35 +41,52 @@ class Dialogs {
             mPlayer.start()
             mPlayer.setOnCompletionListener { mPlayer -> mPlayer.release() }
 
-            var dialogSignatureView: BottomSheetPlayerBinding = BottomSheetPlayerBinding.inflate(
-                LayoutInflater.from(context))
+
+            val dialogSignatureView: BottomSheetPlayerBinding = BottomSheetPlayerBinding.inflate(
+                LayoutInflater.from(context)
+            )
 
             val dialogBSDAddUser = BottomSheetDialog(context)
             dialogBSDAddUser.setCancelable(true)
 
             dialogBSDAddUser.setOnCancelListener {
                 mPlayer.stop()
+                mPlayer.reset()
                 mPlayer.release()
-            }
 
-            dialogSignatureView.btnPlay.click {
-                mPlayer.release()
-                mPlayer.start()
             }
-            dialogSignatureView.btnStop.click {
-                context.toast("cancelo", Toast.LENGTH_SHORT)
-                mPlayer.stop()
+            dialogSignatureView.bsdColletionName.text = tvColletionSongName
+            dialogSignatureView.bsdArtistName.text = tvArtistName
+            dialogSignatureView.btnPlay.click {
+                dialogSignatureView.btnPause.visibility = View.VISIBLE
+                dialogSignatureView.btnPlay.visibility = View.GONE
+
+                mPlayer.start()
             }
 
             dialogSignatureView.btnPause.click {
-                context.toast("cancelo", Toast.LENGTH_SHORT)
-                mPlayer.release()
+
+                dialogSignatureView.btnPause.visibility = View.GONE
+                dialogSignatureView.btnPlay.visibility = View.VISIBLE
+                context.toast("Paused", Toast.LENGTH_SHORT)
+                mPlayer.pause()
             }
 
             dialogBSDAddUser.setContentView(dialogSignatureView.root)
             dialogBSDAddUser.show()
         } catch (e: Exception) {
+
             context.toast(e.toString(), Toast.LENGTH_LONG)
         }
+    }
+
+    fun showDialog(msg: String, context: Context): androidx.appcompat.app.AlertDialog {
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(context)
+        var bindingPDialog: SimpleDialogBinding = SimpleDialogBinding.inflate(
+            LayoutInflater.from(context))
+        dialog.setTitle(msg)
+        dialog.setView(bindingPDialog.root)
+        dialog.setCancelable(false)
+        return dialog.show()
     }
 }

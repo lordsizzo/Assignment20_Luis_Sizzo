@@ -4,10 +4,9 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.assignment20_luis_sizzo.fragment.FragmentSearch
+import com.example.assignment20_luis_sizzo.fragments.FragmentSearch
 
-class TabsAdapter(var context: Context,
-                  fm: FragmentManager,
+class TabsAdapter(fm: FragmentManager,
                   var totalTabs: Int,
 ) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
@@ -16,7 +15,7 @@ class TabsAdapter(var context: Context,
                 FragmentSearch("rock")
             }
             1 -> {
-                FragmentSearch("classic")
+                FragmentSearch("classick")
             }
             2 -> {
                 FragmentSearch("pop")
