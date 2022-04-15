@@ -9,9 +9,9 @@ import kotlinx.coroutines.async
 class ModelListSong: InitConnection() {
 
     @OptIn(DelicateCoroutinesApi::class)
-    suspend fun ListSongCatched(value: String): ResultSongResponse? {
+    suspend fun ListSongCatched(value: String, limit: String): ResultSongResponse? {
         val catchinData = GlobalScope.async {
-            catchDataRetrofit(value)
+            catchDataRetrofit(value, limit)
         }
         return catchinData.await()
     }

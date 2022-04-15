@@ -12,6 +12,8 @@ import com.example.assignment20_luis_sizzo.model.data_class.ResultSongResponse
 import com.example.assignment20_luis_sizzo.ui.SongsAdapter
 import com.example.assignment20_luis_sizzo.utils.Dialogs
 import com.example.assignment20_luis_sizzo.utils.layoutManagerCustom
+import com.example.assignment20_luis_sizzo.utils.snackbar
+import com.example.assignment20_luis_sizzo.utils.toast
 import com.example.assignment20_luis_sizzo.view_model.FragmentSearchViewModel
 
 class FragmentSearch(private val value: String): Fragment() {
@@ -19,14 +21,13 @@ class FragmentSearch(private val value: String): Fragment() {
     lateinit var binding: FragmentViewSearchBinding
     private lateinit var viewModel: FragmentSearchViewModel
     var dialog: androidx.appcompat.app.AlertDialog? = null
-
+    var limit = 5
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentViewSearchBinding.inflate(inflater, container, false)
-
 
         initViews()
         return binding.root
@@ -39,21 +40,25 @@ class FragmentSearch(private val value: String): Fragment() {
         binding.recyclerView.layoutManagerCustom()
         binding.swipeRefresh.setOnRefreshListener {
             dialog = Dialogs().showDialog("Loading...", requireContext())
-            viewModel.loadListSongResponse(value)
+            limit += 5
+            viewModel.loadListSongResponse(value, "$limit")
         }
 
         initViewModelObservable()
     }
     fun initViewModelObservable(){
-        val observerResult = Observer<ResultSongResponse> {
-            val adapter =  SongsAdapter(it.results, requireContext())
-            adapter.apply {
-                binding.recyclerView.adapter = this
-                binding.swipeRefresh.isRefreshing = false
+        val observerResult = Observer<ResultSongResponse> { result ->
+            result.let {
+                val adapter =  SongsAdapter(it.results, requireContext())
+                adapter.apply {
+                    binding.recyclerView.adapter = this
+                }
+                binding.frameSearchLayout.snackbar("Found ${it.resultCount} songs")
             }
+            binding.swipeRefresh.isRefreshing = false
             dialog?.dismiss()
         }
         viewModel.getListSongResponse().observe(viewLifecycleOwner, observerResult)
-        viewModel.loadListSongResponse(value)
+        viewModel.loadListSongResponse(value, "$limit")
     }
 }

@@ -6,10 +6,10 @@ import com.example.assignment20_luis_sizzo.model.data_class.ResultSongResponse
 
 abstract class InitConnection {
 
-    fun catchDataRetrofit(value: String): ResultSongResponse? {
+    fun catchDataRetrofit(value: String, limit: String): ResultSongResponse? {
         var items: ResultSongResponse? = null
 
-        SongsAPI.initRetrofit().getSongs(value, "music", "song", "50").execute().body()?.let {
+        SongsAPI.initRetrofit().getSongs(value, "music", "song", limit).execute().body()?.let {
             items = it
         }?: run {
             Log.d("catchDataRetrofit", "Had an error")
