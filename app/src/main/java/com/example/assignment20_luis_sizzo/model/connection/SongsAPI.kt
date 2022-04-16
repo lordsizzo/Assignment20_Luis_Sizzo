@@ -16,6 +16,8 @@ interface SongsAPI {
         @Query(PARAM_ENTITY) entity: String,
         @Query(PARAM_LIMIT)  limit: String,
     ): Call <ResultSongResponse>
+
+
     companion object{
         fun initRetrofit(): SongsAPI {
             return Retrofit.Builder()

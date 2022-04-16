@@ -7,3 +7,5 @@ const val PARAM_TERM = "term"
 const val PARAM_MEDIA = "amp;media"
 const val PARAM_ENTITY = "amp;entity"
 const val PARAM_LIMIT = "limit"
+
+//https://itunes.apple.com/search?term=pop&amp;media=music&amp;entity=song&limit=15

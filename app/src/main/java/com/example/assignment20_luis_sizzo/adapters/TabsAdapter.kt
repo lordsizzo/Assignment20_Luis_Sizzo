@@ -1,6 +1,5 @@
-package com.example.assignment20_luis_sizzo.ui
+package com.example.assignment20_luis_sizzo.adapters
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter

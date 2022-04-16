@@ -14,6 +14,8 @@ import java.io.IOException
 
 class Dialogs {
     private lateinit var mPlayer: MediaPlayer
+    private var isPlaying: Boolean = true
+
     @SuppressLint("LongLogTag")
     fun bottomSheetDialogChangeSignature(
         context: Context,
@@ -22,60 +24,71 @@ class Dialogs {
         tvArtistName: String
     ) {
         try {
-            mPlayer = MediaPlayer()
-            mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-            try {
-                mPlayer.setDataSource(url)
-            } catch (e: IllegalArgumentException) {
-                context.toast("You might not set the URI correctly!", Toast.LENGTH_LONG)
-            } catch (e: IOException) {
-                e.printStackTrace()
+            if (isPlaying){
+
+                isPlaying = false
+                mPlayer = MediaPlayer()
+                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+                try {
+                    mPlayer.setDataSource(url)
+                } catch (e: IllegalArgumentException) {
+                    context.toast("You might not set the URI correctly!", Toast.LENGTH_LONG)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+                try {
+                    mPlayer.prepare()
+                } catch (e: IllegalStateException) {
+                    context.toast("You might not set the URI correctly!", Toast.LENGTH_LONG)
+                } catch (e: IOException) {
+                    context.toast("You might not set the URI correctly!", Toast.LENGTH_LONG)
+                }
+
+                mPlayer.setOnCompletionListener { mPlayer -> mPlayer.release() }
+
+
+                if(mPlayer.isPlaying){
+                    //context.toast("Se esta reproduciendo", Toast.LENGTH_LONG)
+                }else{
+                    mPlayer.start()
+                }
+
+                val dialogSignatureView: BottomSheetPlayerBinding = BottomSheetPlayerBinding.inflate(
+                    LayoutInflater.from(context)
+                )
+
+                val dialogBSDAddUser = BottomSheetDialog(context)
+                dialogBSDAddUser.setCancelable(true)
+
+                dialogBSDAddUser.setOnCancelListener {
+                    isPlaying = true
+                    mPlayer.stop()
+                    mPlayer.reset()
+                    mPlayer.release()
+
+                }
+                dialogSignatureView.bsdColletionName.text = tvColletionSongName
+                dialogSignatureView.bsdArtistName.text = tvArtistName
+                dialogSignatureView.btnPlay.click {
+                    dialogSignatureView.btnPause.visibility = View.VISIBLE
+                    dialogSignatureView.btnPlay.visibility = View.GONE
+
+                    mPlayer.start()
+                }
+
+                dialogSignatureView.btnPause.click {
+
+                    dialogSignatureView.btnPause.visibility = View.GONE
+                    dialogSignatureView.btnPlay.visibility = View.VISIBLE
+                    context.toast("Paused", Toast.LENGTH_SHORT)
+                    mPlayer.pause()
+                }
+
+                dialogBSDAddUser.setContentView(dialogSignatureView.root)
+                dialogBSDAddUser.show()
             }
-            try {
-                mPlayer.prepare()
-            } catch (e: IllegalStateException) {
-                context.toast("You might not set the URI correctly!", Toast.LENGTH_LONG)
-            } catch (e: IOException) {
-                context.toast("You might not set the URI correctly!", Toast.LENGTH_LONG)
-            }
-            mPlayer.start()
-            mPlayer.setOnCompletionListener { mPlayer -> mPlayer.release() }
-
-
-            val dialogSignatureView: BottomSheetPlayerBinding = BottomSheetPlayerBinding.inflate(
-                LayoutInflater.from(context)
-            )
-
-            val dialogBSDAddUser = BottomSheetDialog(context)
-            dialogBSDAddUser.setCancelable(true)
-
-            dialogBSDAddUser.setOnCancelListener {
-                mPlayer.stop()
-                mPlayer.reset()
-                mPlayer.release()
-
-            }
-            dialogSignatureView.bsdColletionName.text = tvColletionSongName
-            dialogSignatureView.bsdArtistName.text = tvArtistName
-            dialogSignatureView.btnPlay.click {
-                dialogSignatureView.btnPause.visibility = View.VISIBLE
-                dialogSignatureView.btnPlay.visibility = View.GONE
-
-                mPlayer.start()
-            }
-
-            dialogSignatureView.btnPause.click {
-
-                dialogSignatureView.btnPause.visibility = View.GONE
-                dialogSignatureView.btnPlay.visibility = View.VISIBLE
-                context.toast("Paused", Toast.LENGTH_SHORT)
-                mPlayer.pause()
-            }
-
-            dialogBSDAddUser.setContentView(dialogSignatureView.root)
-            dialogBSDAddUser.show()
         } catch (e: Exception) {
-
+            isPlaying = true
             context.toast(e.toString(), Toast.LENGTH_LONG)
         }
     }

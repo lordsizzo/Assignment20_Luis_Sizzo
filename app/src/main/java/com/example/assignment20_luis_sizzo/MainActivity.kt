@@ -3,7 +3,7 @@ package com.example.assignment20_luis_sizzo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.assignment20_luis_sizzo.databinding.ActivityMainBinding
-import com.example.assignment20_luis_sizzo.ui.TabsAdapter
+import com.example.assignment20_luis_sizzo.adapters.TabsAdapter
 import com.example.assignment20_luis_sizzo.utils.settings
 import com.example.assignment20_luis_sizzo.utils.tabSelected
 import com.example.assignment20_luis_sizzo.utils.tabs

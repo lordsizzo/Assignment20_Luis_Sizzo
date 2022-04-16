@@ -8,12 +8,15 @@ abstract class InitConnection {
 
     fun catchDataRetrofit(value: String, limit: String): ResultSongResponse? {
         var items: ResultSongResponse? = null
-
-        SongsAPI.initRetrofit().getSongs(value, "music", "song", limit).execute().body()?.let {
+        SongsAPI.initRetrofit()
+            .getSongs(value, "music", "song", limit)
+            .execute()
+            .body()?.let {
             items = it
-        }?: run {
+        } ?: run {
             Log.d("catchDataRetrofit", "Had an error")
         }
+
         return items
     }
 }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.assignment20_luis_sizzo.R
-import com.example.assignment20_luis_sizzo.ui.TabsAdapter
+import com.example.assignment20_luis_sizzo.adapters.TabsAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 

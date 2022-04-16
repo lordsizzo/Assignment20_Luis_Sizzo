@@ -1,4 +1,4 @@
-package com.example.assignment20_luis_sizzo.ui
+package com.example.assignment20_luis_sizzo.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -33,7 +33,6 @@ class SongsAdapter(private val items: List<SongResponse>, val context: Context) 
             holder.binding.tvSongPrice.text = "${items[position].trackPrice} USD"
             holder.binding.tvArtistName.text = items[position].artistName
             holder.binding.cardViewItemSong.click {
-
                 Dialogs().bottomSheetDialogChangeSignature(
                     context,
                     items[position].previewUrl,

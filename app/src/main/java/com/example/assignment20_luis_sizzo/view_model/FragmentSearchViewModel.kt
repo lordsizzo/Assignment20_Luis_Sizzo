@@ -21,11 +21,13 @@ class FragmentSearchViewModel: ViewModel() {
         return list_songs
     }
     fun loadListSongResponse(value: String, limit: String) {
-        var items: ResultSongResponse?
         CoroutineScope(Dispatchers.Main).launch {
+
+            var items: ResultSongResponse?
             ModelListSong().ListSongCatched(value, limit).let { result ->
                 items = result
             }
+
             Handler(Looper.getMainLooper()).post {
                 try {
                     list_songs.value = items

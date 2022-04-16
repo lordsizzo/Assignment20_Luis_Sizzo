@@ -9,11 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.assignment20_luis_sizzo.databinding.FragmentViewSearchBinding
 import com.example.assignment20_luis_sizzo.model.data_class.ResultSongResponse
-import com.example.assignment20_luis_sizzo.ui.SongsAdapter
+import com.example.assignment20_luis_sizzo.adapters.SongsAdapter
 import com.example.assignment20_luis_sizzo.utils.Dialogs
 import com.example.assignment20_luis_sizzo.utils.layoutManagerCustom
 import com.example.assignment20_luis_sizzo.utils.snackbar
-import com.example.assignment20_luis_sizzo.utils.toast
 import com.example.assignment20_luis_sizzo.view_model.FragmentSearchViewModel
 
 class FragmentSearch(private val value: String): Fragment() {
@@ -21,7 +20,7 @@ class FragmentSearch(private val value: String): Fragment() {
     lateinit var binding: FragmentViewSearchBinding
     private lateinit var viewModel: FragmentSearchViewModel
     var dialog: androidx.appcompat.app.AlertDialog? = null
-    var limit = 5
+    var limit: Int = 5
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
