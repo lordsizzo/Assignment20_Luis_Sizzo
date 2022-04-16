@@ -1,18 +1,14 @@
 package com.example.assignment20_luis_sizzo.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.assignment20_luis_sizzo.databinding.FragmentViewSearchBinding
 import com.example.assignment20_luis_sizzo.model.data_class.ResultSongResponse
 import com.example.assignment20_luis_sizzo.adapters.SongsAdapter
-import com.example.assignment20_luis_sizzo.utils.Dialogs
-import com.example.assignment20_luis_sizzo.utils.layoutManagerCustom
-import com.example.assignment20_luis_sizzo.utils.snackbar
+import com.example.assignment20_luis_sizzo.utils.*
 import com.example.assignment20_luis_sizzo.view_model.FragmentSearchViewModel
 
 class FragmentSearch(private val value: String): Fragment() {

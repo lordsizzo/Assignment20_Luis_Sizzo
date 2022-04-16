@@ -2,7 +2,7 @@ package com.example.assignment20_luis_sizzo.model.connection
 
 import com.example.assignment20_luis_sizzo.model.data_class.ResultSongResponse
 import com.example.assignment20_luis_sizzo.utils.*
-import retrofit2.Call
+import retrofit2.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
