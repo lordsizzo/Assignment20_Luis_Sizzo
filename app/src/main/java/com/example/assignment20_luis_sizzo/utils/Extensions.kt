@@ -33,7 +33,6 @@ fun TabLayout.tabs() {
     this.addTab(this.newTab().setText("Rock").setIcon(R.drawable.rock))
     this.addTab(this.newTab().setText("Classic").setIcon(R.drawable.classic))
     this.addTab(this.newTab().setText("Pop").setIcon(R.drawable.rock))
-
     this.tabGravity = TabLayout.GRAVITY_FILL
 }
 
